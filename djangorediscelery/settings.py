@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +123,7 @@ STATIC_URL = '/static/'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 from celery.schedules import crontab
+CELERY_IMPORTS = ['djangorediscelery.tasks',]
 CELERY_BEAT_SCHEDULE = {
     'printHello': {
         'task': 'djangorediscelery.tasks.printHello',
